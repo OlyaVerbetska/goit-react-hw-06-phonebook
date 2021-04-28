@@ -1,6 +1,8 @@
 import { Component } from 'react';
+import { connect } from 'react-redux';
 import { v4 as uuidv4 } from 'uuid';
 import styles from '../ContactForm/ContactForm.module.css';
+import actions from '../../redux/contactsActions';
 
 class ContactForm extends Component {
   nameInputId = uuidv4();
@@ -9,6 +11,7 @@ class ContactForm extends Component {
   state = {
     name: '',
     number: '',
+    
   };
 
   changeInput = e => {
@@ -18,10 +21,6 @@ class ContactForm extends Component {
     });
   };
 
-  // checkContact = () => {
-  //   this.state.name ===
-  // }
-
   handleFormSubmit = e => {
     e.preventDefault();
     const checkContact = Boolean(
@@ -29,11 +28,10 @@ class ContactForm extends Component {
         element => element.name === this.state.name,
       ),
     );
-    //console.log(checkContact===true);
 
     checkContact
       ? alert(`${this.state.name} is already in contacts`)
-      : this.props.onFormSubmit(this.state);
+      : this.props.onSubmit(this.state);
 
     this.resetInput();
   };
@@ -45,7 +43,7 @@ class ContactForm extends Component {
   render() {
     const { name, number } = this.state;
     return (
-      <form onSubmit={this.handleFormSubmit} className={styles.contactForm}>
+      <form className={styles.contactForm} onSubmit={this.handleFormSubmit}>
         <label htmlFor={this.nameInputId} className={styles.contactForm__label}>
           <span className={styles.contactForm__title}>Name:</span>
           <input
@@ -83,4 +81,12 @@ class ContactForm extends Component {
   }
 }
 
-export default ContactForm;
+const mapStateToProps = state => ({
+  existContacts: state.contacts.items,
+});
+const mapDispatchToProps = dispatch => ({
+  onSubmit: data => dispatch(actions.addContact(data)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(ContactForm);
+// onSubmit={this.handleFormSubmit}
