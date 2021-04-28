@@ -89,4 +89,3 @@ const mapDispatchToProps = dispatch => ({
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ContactForm);
-// onSubmit={this.handleFormSubmit}

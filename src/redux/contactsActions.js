@@ -11,10 +11,15 @@ const addContact = ({ name, number }) => ({
   },
 });
 
-const deleteContact = contactName => ({
+const deleteContact = id => ({
   type: actionTypes.DELETE,
-  payload: contactName,
+  payload: id,
 });
 
+const changeFilter = (value)=> ({
+type: actionTypes.CHANGE_FILTER,
+payload: value,
+})
+
 //eslint-disable-next-line
-export default { addContact, deleteContact };
+export default { addContact, deleteContact, changeFilter };
