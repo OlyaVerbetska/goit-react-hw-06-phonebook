@@ -1,3 +1,11 @@
+.contactList__subtitle {
+  font-size: 30px;
+  font-weight: 900;
+  text-align: center;
+  margin: 25px 0 15px 0;
+}
+
+
 .contactList {
   list-style: none;
   padding: 0;

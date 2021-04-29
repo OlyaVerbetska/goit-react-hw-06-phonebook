@@ -6,6 +6,8 @@ import actions from '../../redux/contactsActions';
 
 const ContactList = ({ contactsForList, onDeleteContact }) => (
   <ul className={styles.contactList}>
+{contactsForList.length > 0 && <h2 className = {styles.contactList__subtitle}> Contacts </h2> }
+    
     {contactsForList.map(contact => (
       <li key={uuidv4()} className={styles.contactList__item}>
         <span className={styles.contactList__elem}> {contact.name}:</span>

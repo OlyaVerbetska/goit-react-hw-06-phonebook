@@ -1,25 +1,19 @@
-import actionTypes from './types';
+// import actionTypes from './types';
 import { v4 as uuidv4 } from 'uuid';
+import { createAction } from '@reduxjs/toolkit';
 
 
-const addContact = ({ name, number }) => ({
-  type: actionTypes.ADD,
+const addContact = createAction('contacts/add', ({ name, number }) =>({
   payload: {
     name,
     number,
-    id:uuidv4()
+    id: uuidv4(),
   },
-});
+}));
 
-const deleteContact = id => ({
-  type: actionTypes.DELETE,
-  payload: id,
-});
+const deleteContact = createAction('contacts/delete');
 
-const changeFilter = (value)=> ({
-type: actionTypes.CHANGE_FILTER,
-payload: value,
-})
+const changeFilter = createAction('contacts/changeFilter');
 
 //eslint-disable-next-line
 export default { addContact, deleteContact, changeFilter };
