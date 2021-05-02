@@ -11,7 +11,6 @@ class ContactForm extends Component {
   state = {
     name: '',
     number: '',
-    
   };
 
   changeInput = e => {
@@ -23,10 +22,8 @@ class ContactForm extends Component {
 
   handleFormSubmit = e => {
     e.preventDefault();
-    const checkContact = Boolean(
-      this.props.existContacts.find(
-        element => element.name === this.state.name,
-      ),
+    const checkContact = this.props.existContacts.some(
+      element => element.name === this.state.name,
     );
 
     checkContact
